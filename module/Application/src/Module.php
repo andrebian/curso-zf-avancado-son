@@ -7,12 +7,46 @@
 
 namespace Application;
 
-class Module
+use Zend\Cache\StorageFactory;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\ServiceManager\ServiceManager;
+
+class Module implements ServiceProviderInterface
 {
     const VERSION = '3.0.3-dev';
 
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
+    }
+
+    /**
+     * Expected to return \Zend\ServiceManager\Config object or array to
+     * seed such an object.
+     *
+     * @return array|\Zend\ServiceManager\Config
+     */
+    public function getServiceConfig()
+    {
+        return [
+            'factories' => [
+                'cache' => function (ServiceManager $serviceManager) {
+                    $cache = StorageFactory::factory([
+                        'adapter' => 'apc',
+                        'options' => [
+                            'ttl' => 10
+                        ],
+                        'plugins' => [
+                            'exception_handler' => [
+                                'throw_exceptions' => true
+                            ],
+                            'serializer'
+                        ]
+                    ]);
+
+                    return $cache;
+                }
+            ]
+        ];
     }
 }
