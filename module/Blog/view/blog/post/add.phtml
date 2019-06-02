@@ -1,0 +1,47 @@
+<?php
+$form = $this->form;
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+    <div class="form-group">
+        <label><?php echo $form->get('titulo')->getLabel(); ?></label>
+        <?php echo $this->formElement($form->get('titulo')); ?>
+        <?php if (isset($this->errorMessages['titulo'])) : ?>
+            <small style="color: #f00;">
+                <?php foreach ($this->errorMessages['titulo'] as $message) {
+                    echo $message . '<br />';
+                } ?>
+            </small>
+        <?php endif; ?>
+    </div>
+
+    <div class="form-group">
+        <label><?php echo $form->get('conteudo')->getLabel(); ?></label>
+        <?php echo $this->formElement($form->get('conteudo')); ?>
+        <?php if (isset($this->errorMessages['conteudo'])) : ?>
+            <small style="color: #f00;">
+                <?php foreach ($this->errorMessages['conteudo'] as $message) {
+                    echo $message . '<br />';
+                } ?>
+            </small>
+        <?php endif; ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formElement($form->get('csrf')); ?>
+        <?php if (isset($this->errorMessages['csrf'])) : ?>
+            <small style="color: #f00;">
+                <?php foreach ($this->errorMessages['csrf'] as $message) {
+                    echo $message . '<br />';
+                } ?>
+            </small>
+        <?php endif; ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $this->formElement($form->get('submit')); ?>
+    </div>
+
+<?php echo $this->form()->closeTag(); ?>
