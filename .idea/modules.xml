@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/iniciando-zf.iml" filepath="$PROJECT_DIR$/.idea/iniciando-zf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/zf-avancado.iml" filepath="$PROJECT_DIR$/.idea/zf-avancado.iml" />
     </modules>
   </component>
 </project>
