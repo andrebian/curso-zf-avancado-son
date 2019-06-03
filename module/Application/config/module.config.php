@@ -7,6 +7,7 @@
 
 namespace Application;
 
+use Zend\I18n\Translator\TranslatorServiceFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -57,4 +58,19 @@ return [
             __DIR__ . '/../view',
         ],
     ],
+    'service_manager' => [
+        'factories' => [
+            'translator' => TranslatorServiceFactory::class
+        ]
+    ],
+    'translator' => [
+        'locale' => 'pt_BR',
+        'translation_file_patterns' => [
+            [
+                'type' => 'phparray',
+                'base_dir' => __DIR__ . '/../language-array',
+                'pattern' => '%s.php'
+            ]
+        ]
+    ]
 ];
