@@ -66,10 +66,15 @@ return [
     'translator' => [
         'locale' => 'pt_BR',
         'translation_file_patterns' => [
+//            [
+//                'type' => 'phparray',
+//                'base_dir' => __DIR__ . '/../language-array',
+//                'pattern' => '%s.php'
+//            ]
             [
-                'type' => 'phparray',
-                'base_dir' => __DIR__ . '/../language-array',
-                'pattern' => '%s.php'
+                'type' => 'gettext',
+                'base_dir' => __DIR__ . '/../language-gettext',
+                'pattern' => '%s.mo'
             ]
         ]
     ]
