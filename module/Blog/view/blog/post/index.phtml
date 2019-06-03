@@ -12,13 +12,23 @@
         <tr>
             <td><?php echo $post->getTitulo(); ?></td>
             <td><?php echo $post->getConteudo(); ?></td>
-            <td><?php echo $post->getDataCriacao()->format('d/m/Y H:i'); ?></td>
             <td>
-                <?php
-                    if ($post->getDataAtualizacao()) {
-                        echo $post->getDataAtualizacao()->format('d/m/Y H:i');
-                    }
-                ?>
+                <?= $this->dateFormat(
+                    $post->getDataCriacao(),
+                    IntlDateFormatter::SHORT,
+                    IntlDateFormatter::SHORT,
+                    'pt_BR'
+                ); ?>
+            </td>
+            <td>
+                <?php if ($post->getDataAtualizacao()) : ?>
+                    <?= $this->dateFormat(
+                        $post->getDataAtualizacao(),
+                        IntlDateFormatter::SHORT,
+                        IntlDateFormatter::SHORT,
+                        'pt_BR'
+                    ); ?>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach; ?>
