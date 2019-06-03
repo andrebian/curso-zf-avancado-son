@@ -31,17 +31,13 @@ class PostController extends AbstractActionController
 
         /** @var StorageInterface $cache */
         $cache = $this->getServiceManager()->get('cache');
-        if (! $date = $cache->getItem('date')) {
-            $date = new \DateTime();
-            $cache->setItem('date', $date);
+        if (! $posts = $cache->getItem('posts')) {
+            $posts = $postTable->fetchAll();
+            $cache->setItem('posts', $posts);
         }
 
-        var_dump($date);
-        die();
-
         return new ViewModel([
-            'date' => $date,
-            'posts' => $postTable->fetchAll()
+            'posts' => $posts
         ]);
     }
 
