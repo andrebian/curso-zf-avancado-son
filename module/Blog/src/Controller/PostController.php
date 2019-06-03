@@ -11,8 +11,10 @@ namespace Blog\Controller;
 use Blog\Form\PostForm;
 use Blog\Model\Post;
 use Blog\Model\PostTable;
+use Zend\Cache\Storage\StorageInterface;
 use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\SaveHandler\Cache;
 use Zend\View\Model\ViewModel;
 
 class PostController extends AbstractActionController
@@ -27,7 +29,18 @@ class PostController extends AbstractActionController
         /** @var PostTable $postTable */
         $postTable = $this->getServiceManager()->get(PostTable::class);
 
+        /** @var StorageInterface $cache */
+        $cache = $this->getServiceManager()->get('cache');
+        if (! $date = $cache->getItem('date')) {
+            $date = new \DateTime();
+            $cache->setItem('date', $date);
+        }
+
+        var_dump($date);
+        die();
+
         return new ViewModel([
+            'date' => $date,
             'posts' => $postTable->fetchAll()
         ]);
     }

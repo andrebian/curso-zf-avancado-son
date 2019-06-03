@@ -32,7 +32,7 @@ class Module implements ServiceProviderInterface
             'factories' => [
                 'cache' => function (ServiceManager $serviceManager) {
                     $cache = StorageFactory::factory([
-                        'adapter' => 'apc',
+                        'adapter' => 'filesystem',
                         'options' => [
                             'ttl' => 10
                         ],
