@@ -31,14 +31,16 @@ class Module implements ServiceProviderInterface
         return [
             'factories' => [
                 'cache' => function (ServiceManager $serviceManager) {
+                    $config = $serviceManager->get('config')['cache'];
+
                     $cache = StorageFactory::factory([
-                        'adapter' => 'filesystem',
+                        'adapter' => $config['adapter'],
                         'options' => [
-                            'ttl' => 10
+                            'ttl' => $config['ttl']
                         ],
                         'plugins' => [
                             'exception_handler' => [
-                                'throw_exceptions' => true
+                                'throw_exceptions' => $config['throw_exceptions']
                             ],
                             'serializer'
                         ]
