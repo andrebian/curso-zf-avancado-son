@@ -1,3 +1,5 @@
+<?php $this->plugin('dateFormat')->setTimezone('America/Sao_Paulo')->setlocale('pt_BR'); ?>
+
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -16,8 +18,7 @@
                 <?= $this->dateFormat(
                     $post->getDataCriacao(),
                     IntlDateFormatter::SHORT,
-                    IntlDateFormatter::SHORT,
-                    'pt_BR'
+                    IntlDateFormatter::SHORT
                 ); ?>
             </td>
             <td>
@@ -25,8 +26,7 @@
                     <?= $this->dateFormat(
                         $post->getDataAtualizacao(),
                         IntlDateFormatter::SHORT,
-                        IntlDateFormatter::SHORT,
-                        'pt_BR'
+                        IntlDateFormatter::SHORT
                     ); ?>
                 <?php endif; ?>
             </td>
